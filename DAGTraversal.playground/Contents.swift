@@ -42,7 +42,7 @@ class Graph {
     
     //
     private func printG(preVList: String, adjacencyList: [Int]?) {
-        //If reched at the last child then print all the path
+        //If reched at the last child then print the path
         guard let list = adjacencyList, list.count > 0 else{
             print(preVList)
             return
@@ -74,19 +74,16 @@ graph.printGraph()
 print("\n\n----Mix Strings------\n")
 
 
-func mixString(s1: String, s2: String, s3: String) -> String {
+func mixString(s1: String, s2: String, s3: String, i: Int) -> String {
     
-    //as given all string have equal count
-    
-    if s1.count == 0 || s2.count == 0 || s3.count == 0{
+    //as given all string have equal number of characters
+    if i == s1.count {
         return ""
     }
     else {
-        var str1 = s1
-        var str2 = s2
-        var str3 = s3
-        return ("\(str1.removeFirst())" + "\(str2.removeFirst())" + "\(str3.removeFirst())") + mixString(s1: str1, s2: str2, s3: str3)
+        let index = s1.index(s1.startIndex, offsetBy: i)
+        return ("\(s1[index])" + "\(s2[index])" + "\(s3[index])") + mixString(s1: s1, s2: s2, s3: s3, i: i+1)
     }
     
 }
-print(mixString(s1: "abcd", s2: "ijkl", s3: "xyzw"))
+print(mixString(s1: "abcd", s2: "ijkl", s3: "xyzw", i: 0))
